@@ -49,7 +49,7 @@ class PersonalizedPageRank:
             if topic in lower_key_content:
                 seeds[key_to_pos[key]] = 1
 
-        seeds = seeds/len(seeds)
+        seeds = seeds/sum(seeds)
         return seeds
         
     def PersonalizedPageRank_iteration(self, x, alpha):

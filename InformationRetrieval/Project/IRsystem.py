@@ -2,7 +2,7 @@ import numpy as np
 from user import User
 from personalizedPagerank import PersonalizedPageRank
 from dominate import document
-from dominate.tags import ul, li, a, h1
+from dominate.tags import ul, li, a, h1, h2
 
 class IRsystem():
 
@@ -42,7 +42,8 @@ class IRsystem():
                 #print(w, self.dict[w])
 
         with document(title='Result') as doc:
-            h1('Wikipedia PersonalizedPageRank result')
+            h1('Wikipedia PersonalizedPageRank')
+            h2('Result for '+self.user.name+' '+self.user.surname)
             for path in paths:
                 name = path[13:]
                 name = name.replace('.html','')

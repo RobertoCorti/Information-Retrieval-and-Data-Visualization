@@ -3,12 +3,15 @@ from user import User
 from personalizedPagerank import PersonalizedPageRank
 from IRsystem import IRsystem
 
+
+print('\n')
+
 name = input('Name: ')
 surname = input('Surname: ')
 
 user = User(name=name, surname=surname)
 
-print('\n\nHello '+name+' '+surname+'!!')
+print('\n\nHello '+name+' '+surname+'!!\n')
 print('Welcome to the topic Wikipedia search!\n')
 
 print('Before starting the search, please rate from 0 to 5 these following arguments\n')
@@ -30,6 +33,6 @@ system = IRsystem(user=user, pagerank=p)
 
 print('\nLoading....\n')
 
-system.compute_final_pagerank(alpha=0.2, epsilon=0.001)
+system.compute_final_pagerank(alpha=0.3, epsilon=0.001)
 
 system.write_result()
