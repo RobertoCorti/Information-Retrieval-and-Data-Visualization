@@ -46,7 +46,9 @@ class PersonalizedPageRank:
 
         for key in self.contents.keys():
             lower_key_content = [x.lower() for x in self.contents[key]]
-            if topic in lower_key_content:
+            mask = [topic in x for x in lower_key_content]
+            #if topic in lower_key_content:
+            if any(mask):
                 seeds[key_to_pos[key]] = 1
 
         seeds = seeds/sum(seeds)
@@ -70,6 +72,7 @@ class PersonalizedPageRank:
         # ...or a random stochastic vector
         x = np.random.rand(self.num_nodes)
         x = x/x.sum()
+        x = self.J
         # We can now iterate until the norm one of the changes in the
         # last iteration goes below epsilon
         err = np.inf # initially infinity

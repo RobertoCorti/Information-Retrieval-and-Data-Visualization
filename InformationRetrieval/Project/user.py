@@ -4,11 +4,4 @@ class User:
         self.name = name
         self.surname = surname
 
-        self.rates = { 'art': 0,
-                       'business': 0,
-                       'computer': 0,
-                       'geography': 0,
-                       'history': 0,
-                       'society': 0,
-                       'sport': 0 }
-
+        self.rates = {}
