@@ -7,6 +7,8 @@ class PersonalizedPageRank:
     def __init__(self, graphFile, contentFile):
         self.graph_file = graphFile
         self.content_file = contentFile
+        self.generate_graph()
+        self.generate_contents()
         
     def generate_graph(self):
         with open(self.graph_file, 'r') as f:
@@ -51,8 +53,10 @@ class PersonalizedPageRank:
             if any(mask):
                 seeds[key_to_pos[key]] = 1
 
-        seeds = seeds/sum(seeds)
-        return seeds
+        if (np.sum(seeds)!=0):
+            self.J = seeds/sum(seeds)
+        else: 
+            self.J = seeds
         
     def PersonalizedPageRank_iteration(self, x, alpha):
         P = (1 - alpha) * self.R
@@ -60,19 +64,21 @@ class PersonalizedPageRank:
         return x_prime
     
     def compute_PersonalizedPageRank(self, topic, alpha, epsilon):
-        self.generate_graph()
-        self.generate_contents()
+        dictionary = {}
         # We compute the transition matrix without the teleportation
         self.compute_stochastic_matrix()
         # The jump vector is imply a vector of ones divided by its length
-        self.J = self.generate_seed(topic)
+        self.generate_seed(topic)
+        if (np.sum(self.J)==0):
+            print('There are no pages related to '+topic)
+            x = np.zeros(self.num_nodes)
+            return x, dictionary
         #J = np.ones(n)/n
         # The starting point can be a uniform distribution across all nodes
         # x = np.ones(n)/n
         # ...or a random stochastic vector
         x = np.random.rand(self.num_nodes)
         x = x/x.sum()
-        x = self.J
         # We can now iterate until the norm one of the changes in the
         # last iteration goes below epsilon
         err = np.inf # initially infinity
@@ -80,7 +86,6 @@ class PersonalizedPageRank:
             x_new = self.PersonalizedPageRank_iteration(x, alpha)
             err = (abs(x_new - x)).sum()
             x = x_new
-        dictionary = {}
         for i, k in enumerate(self.graph.keys()):
             dictionary[k] = x[i]
         
