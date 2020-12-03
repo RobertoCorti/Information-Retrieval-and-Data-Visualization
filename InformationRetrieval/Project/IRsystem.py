@@ -22,7 +22,7 @@ class IRsystem():
         xs = []
         
         for topic in self.user.rates.keys():
-            x, _ = self.pagerank.compute_PersonalizedPageRank(topic, alpha, epsilon)
+            x = self.pagerank.compute_PersonalizedPageRank(topic, alpha, epsilon)
             xs.append(x)
         
         xs = np.array(xs)
@@ -32,7 +32,6 @@ class IRsystem():
             self.dict[k] = self.pagerank_vector[i]
 
     def write_result(self):
-        
         paths = []
         for w in sorted(self.dict, key=self.dict.get, reverse=True):
             not_useful_pages= ['User', 'Category', 'Wiki','Help','Image','Special','License', 'GFDL', 'language']
@@ -50,5 +49,5 @@ class IRsystem():
                 ul(li(a(name, href=path), __pretty=False))
 
 
-        with open('result.html', 'w') as f:
+        with open('result/result_'+self.user.name+self.user.surname+'.html', 'w') as f:
             f.write(doc.render())
