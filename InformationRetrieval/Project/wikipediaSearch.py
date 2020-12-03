@@ -53,4 +53,4 @@ system.compute_final_pagerank(alpha=0.2, epsilon=0.001)
 
 system.write_result()
 
-print('Result written in result/result_'+user.name+user.surname+'.html')
+print('Result written in result/result_'+user.name+user.surname+'.html\n\n')
