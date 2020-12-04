@@ -37,14 +37,14 @@ class IRsystem():
             not_useful_pages= ['User', 'Category', 'Wiki','Help','Image','Special','License', 'GFDL', 'language']
             mask = [x not in w for x in not_useful_pages]
             if all(mask):
-                paths.append('simple/'+w)
+                paths.append('../data/simple/'+w)
                 #print(w, self.dict[w])
 
         with document(title='Result') as doc:
             h1('Wikipedia PersonalizedPageRank')
             h2('Result for '+self.user.name+' '+self.user.surname)
             for path in paths:
-                name = path[13:]
+                name = path[21:]
                 name = name.replace('.html','')
                 ul(li(a(name, href=path), __pretty=False))
 

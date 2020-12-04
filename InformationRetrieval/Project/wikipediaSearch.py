@@ -24,8 +24,6 @@ surname = input('Surname: ')
 user = User(name=name, surname=surname)
 
 print(WIKIPEDIA_SEARCH_ASCII)
-
-#print('Hello '+name+' '+surname+'!\n')
 print('Welcome to the WikipediaSearch!')
 print(WIKIPEDIA_SEARCH_INTRO)
 print('Please '+name+ ' '+surname+', list your 5 main interests and rate each of them from 1 to 5\n')

@@ -96,7 +96,7 @@ def write_graph(dictionary, outputFile):
 
 
 if __name__ == '__main__':
-
+    print('\n Scraping into data/simple ....\n')
     sites, contents = get_dictionaries('data/simple')
 
     preprocessing_step1(sites)
@@ -104,5 +104,8 @@ if __name__ == '__main__':
 
     split_contents(contents)
 
-    write_graph(dictionary=sites, outputFile='data/wikipediaGraph_simple_new.json')
-    write_graph(dictionary=contents, outputFile='data/wikipediaGraph_simple_contents_new.json')
+    write_graph(dictionary=sites, outputFile='data/wikipediaGraph_simple.json')
+    print('Web graph written in data/wikipediaGraph_simple.json\n')
+    
+    write_graph(dictionary=contents, outputFile='data/wikipediaGraph_simple_contents.json')
+    print('Content graph written in data/wikipediaGraph_simple_contents.json\n')
