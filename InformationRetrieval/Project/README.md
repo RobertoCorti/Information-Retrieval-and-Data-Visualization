@@ -45,7 +45,7 @@ Use the interactive demo as follows:
 
 Once indicated your topic preferences, the WikipediaSearch engine will compute the PersonalizedPageRank and it will generate an HTML file with the following path `results/result_[name][surname].html`. Here you find an example of such page:
 
-![result](/home/roberto/Desktop/Università/DSSC/Secondo_Anno/InfoRetrieval_DataVisualization/Information-Retrieval-and-Data-Visualization/InformationRetrieval/Project/img/result.png)
+![result](img/result.png)
 
 ## Resources
 
