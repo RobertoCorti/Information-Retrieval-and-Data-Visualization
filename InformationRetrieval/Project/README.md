@@ -1,21 +1,21 @@
-# Information Retrieval Project: a personalized Wikipedia search engine
+# Information Retrieval Project:  WikipediaSearch
 
 
 
 This repository contains the content of the project for the Information Retrieval course exam.
 
-**WikipediaSearch** is a user-interactive tool that computes a Personalized PageRank over a Wikipedia corpus.
+**WikipediaSearch** is a user-interactive tool that computes a Topic-Specific PageRank over a Wikipedia corpus. The user interacts with the system by specifying the 5 topics in which he/she is interested in to look inside Wikipedia. The final result will be an HTML page with containing a rank of the Wikipedia articles on which the user may be interested to look.
 
 
 
 ## How to prepare the input
 
-To run our version of PageRank we need a set of web pages in order to build a web graph. The dataset taken into account for this work is the [simple Wikipedia dump of April 2007](https://dumps.wikimedia.org/other/static_html_dumps/April_2007/simple).
+To run our version of PageRank we need a set of web pages. The dataset taken into account for this work is the [simple Wikipedia dump of April 2007](https://dumps.wikimedia.org/other/static_html_dumps/April_2007/simple).
 
-The python script `wikipediaGraph.py` will scrape all the pages collected inside the `simple` folder and at the end it will generate two files:
+The python script `wikipediaGraph.py` will scrape all the pages collected inside the `simple` folder and at the output it will generate two files:
 
-* `data/wikipediaGraph_simple.json` a file that contains a dictionary where each key represent an HTML page of the database. Each of them will contain a list of html pages that represent the set of pages that the key page specifies in every tag of the following syntax: `<a href="url">link text</a>`
-* `data/wikipediaGraph_simple_contents.json` a file that contains a dictionary where each key represent an HTML page of the database. Each of them will contain a list of words specified in the `content ` option inside  `<meta>` tag inside the HTML document 
+* `data/wikipediaGraph_simple.json` a file that contains a dictionary where each key represent an HTML page of the database. Each of them will contain a list of HTML pages of the folder that represent the set of pages that the page specifies in every tag of the following syntax: `<a href="url">link text</a>`
+* `data/wikipediaGraph_simple_contents.json` a file that contains a dictionary where each key represent an HTML page of the database. Each of them will contain a list of words specified in the `content ` option inside  `<meta>` tag of the HTML document 
 
 
 
@@ -39,13 +39,13 @@ Use the interactive demo as follows:
 
 
 
-![Demo GIF](img/demo.gif)
+​											![Demo GIF](img/demo.gif)
 
 
 
-Once indicated your topic preferences, the WikipediaSearch engine will compute the PersonalizedPageRank and it will generate an HTML file with the following path `results/result_[name][surname].html`
+Once indicated your topic preferences, the WikipediaSearch engine will compute the PersonalizedPageRank and it will generate an HTML file with the following path `results/result_[name][surname].html`. Here you find an example of such page:
 
-
+![result](/home/roberto/Desktop/Università/DSSC/Secondo_Anno/InfoRetrieval_DataVisualization/Information-Retrieval-and-Data-Visualization/InformationRetrieval/Project/img/result.png)
 
 ## Resources
 
