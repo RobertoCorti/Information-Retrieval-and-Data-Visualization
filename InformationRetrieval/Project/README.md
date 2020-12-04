@@ -12,18 +12,18 @@ This repository contains the content of the project for the Information Retrieva
 
 To run our version of PageRank we need a set of web pages. The dataset taken into account for this work is the [simple Wikipedia dump of April 2007](https://dumps.wikimedia.org/other/static_html_dumps/April_2007/simple).
 
-The python script `wikipediaGraph.py` will scrape all the pages collected inside the `simple` folder and at the output it will generate two files:
+The python script [`wikipediaGraph.py`](wikipediaGraph.py) will scrape all the pages collected inside the [`simple`](simple) folder and at the output it will generate two files:
 
-* `data/wikipediaGraph_simple.json` a file that contains a dictionary where each key represent an HTML page of the database. Each of them will contain a list of HTML pages of the folder that represent the set of pages that the page specifies in every tag of the following syntax: `<a href="url">link text</a>`
-* `data/wikipediaGraph_simple_contents.json` a file that contains a dictionary where each key represent an HTML page of the database. Each of them will contain a list of words specified in the `content ` option inside  `<meta>` tag of the HTML document 
+* [`data/wikipediaGraph_simple.json`](data/wikipediaGraph_simple.json) a file that contains a dictionary where each key represent an HTML page of the database. Each of them will contain a list of HTML pages of the folder that represent the set of pages that the page specifies in every tag of the following syntax: `<a href="url">link text</a>`
+* [`data/wikipediaGraph_simple_contents.json`](data/wikipediaGraph_simple_contents.json) a file that contains a dictionary where each key represent an HTML page of the database. Each of them will contain a list of words specified in the `content` option inside  `<meta>` tag of the HTML document 
 
 
 
 ## Structure of the classes
 
-* `user.py` contains the implementation of the `User` class. An instance of this class is characterized by a name, a surname and a dictionary that for each topic is associated a ranking ranging from 1 to 5.
-* `personalizedPageRank.py` contains the implementation of the `PersonalizedPageRank` class. Inside this class we find all the methods used in order to implement a single topic specific PageRank.
-* `IRsystem.py` contains the implementation of the `IRSystem` class. This class represent the final model that we would like to compute: given a user and a topic specific PageRank algorithm, the system will take into account all the user preferences specified by its own `rates` and performs a topic specific PageRank for each of these topics and will give as output a linear combination of these results. The weights of each topic PageRank vector is a normalized real value proportional to the rank specified in the user's `rates`.
+* [`user.py`](user.py) contains the implementation of the `User` class. An instance of this class is characterized by a name, a surname and a dictionary that for each topic is associated a ranking ranging from 1 to 5.
+* [`personalizedPageRank.py`](personalizedPageRank.py) contains the implementation of the `PersonalizedPageRank` class. Inside this class we find all the methods used in order to implement a single topic specific PageRank.
+* [`IRsystem.py`](IRsystem.py) contains the implementation of the `IRSystem` class. This class represent the final model that we would like to compute: given a user and a topic specific PageRank algorithm, the system will take into account all the user preferences specified by its own `rates` and performs a topic specific PageRank for each of these topics and will give as output a linear combination of these results. The weights of each topic PageRank vector is a normalized real value proportional to the rank specified in the user's `rates`.
 
 
 
