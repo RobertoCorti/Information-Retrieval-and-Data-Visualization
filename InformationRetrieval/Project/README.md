@@ -4,7 +4,7 @@
 
 This repository contains the content of the project for the Information Retrieval course exam.
 
-**WikipediaSearch** is a user-interactive tool that computes a Topic-Specific PageRank over a Wikipedia corpus. The user interacts with the system by specifying the 5 topics in which he/she is interested in to look inside Wikipedia. The final result will be an HTML page with containing a rank of the Wikipedia articles on which the user may be interested to look.
+**WikipediaSearch** is a user-interactive tool that computes a Topic-Specific PageRank over a Wikipedia corpus. The user interacts with the system by specifying the 5 topics in which he/she is interested in to look inside Wikipedia. The final result will be an HTML page containing a rank of the Wikipedia articles on which the user may be interested to look.
 
 
 
@@ -50,6 +50,6 @@ Once indicated your topic preferences, the WikipediaSearch engine will compute t
 ## Resources
 
 * [Wikipedia Downloads](https://dumps.wikimedia.org/other/)
-* [Topic-specific PageRank - NLP Standford](https://nlp.stanford.edu/IR-book/html/htmledition/topic-specific-pagerank-1.html)
+* [Topic-specific PageRank - NLP Stanford](https://nlp.stanford.edu/IR-book/html/htmledition/topic-specific-pagerank-1.html)
 * [Topic-Sensitive PageRank paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.85.9098&rep=rep1&type=pdf)
 
