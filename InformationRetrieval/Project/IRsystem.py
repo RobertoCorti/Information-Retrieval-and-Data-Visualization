@@ -41,12 +41,12 @@ class IRsystem():
                 #print(w, self.dict[w])
 
         with document(title='Result') as doc:
-            h1('Wikipedia PersonalizedPageRank')
+            h1('WikipediaSearch')
             h2('Result for '+self.user.name+' '+self.user.surname)
             for path in paths:
                 name = path[21:]
                 name = name.replace('.html','')
-                ul(li(a(name, href=path), __pretty=False))
+                ul(li(a(name, href=path), __pretty=True))
 
 
         with open('result/result_'+self.user.name+self.user.surname+'.html', 'w') as f:

@@ -24,7 +24,7 @@ surname = input('Surname: ')
 user = User(name=name, surname=surname)
 
 print(WIKIPEDIA_SEARCH_ASCII)
-print('Welcome to the WikipediaSearch!')
+print('Welcome to WikipediaSearch!')
 print(WIKIPEDIA_SEARCH_INTRO)
 print('Please '+name+ ' '+surname+', list your 5 main interests and rate each of them from 1 to 5\n')
 
@@ -45,9 +45,29 @@ p = PersonalizedPageRank(graphFile='data/wikipediaGraph_simple.json',
 
 system = IRsystem(user=user, pagerank=p)
 
+valid_yes = ['y', 'Y', 'yes', 'YES']
+valid_no  = ['n', 'N', 'no', 'NO']
+
+answer = input('Do you want to set the PageRank parameters? (default, alpha=0.2, epsilon=0.001) [y/n] ')
+
+while not(answer in valid_yes or answer in valid_no):
+    answer = input('Do you want to set the PageRank parameters? (default, alpha=0.2, epsilon=0.001) [y/n] ')
+
+if answer in valid_yes:
+    
+    epsilon = float(input('\nSet epsilon: '))
+    alpha = float(input('\nSet alpha: '))
+    while alpha < 0 or alpha > 1:
+        alpha = float(input('Not valid alpha!!!\nSet alpha: '))
+
+elif answer in valid_no:
+    epsilon = 0.001
+    alpha = 0.2
+
+
 print('\nLoading....\n')
 
-system.compute_final_pagerank(alpha=0.2, epsilon=0.001)
+system.compute_final_pagerank(alpha=alpha, epsilon=epsilon)
 
 system.write_result()
 
