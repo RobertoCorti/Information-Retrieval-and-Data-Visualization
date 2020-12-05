@@ -109,3 +109,4 @@ if __name__ == '__main__':
     
     write_graph(dictionary=contents, outputFile='data/wikipediaGraph_simple_contents.json')
     print('Content graph written in data/wikipediaGraph_simple_contents.json\n')
+

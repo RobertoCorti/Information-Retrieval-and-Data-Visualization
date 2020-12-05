@@ -1,17 +1,14 @@
-
 from user import User
 from personalizedPagerank import PersonalizedPageRank
 from IRsystem import IRsystem
 
 WIKIPEDIA_SEARCH_ASCII = """
-
 '|| '||'  '|'  ||  '||       ||                        '||   ||           .|'''.|                                  '||      
  '|. '|.  .'  ...   ||  ..  ...  ... ...    ....     .. ||  ...   ....    ||..  '    ....   ....   ... ..    ....   || ..   
   ||  ||  |    ||   || .'    ||   ||'  || .|...||  .'  '||   ||  '' .||    ''|||.  .|...|| '' .||   ||' '' .|   ''  ||' ||  
    ||| |||     ||   ||'|.    ||   ||    | ||       |.   ||   ||  .|' ||  .     '|| ||      .|' ||   ||     ||       ||  ||  
     |   |     .||. .||. ||. .||.  ||...'   '|...'  '|..'||. .||. '|..'|' |'....|'   '|...' '|..'|' .||.     '|...' .||. ||. 
                                   ||                                                                                        
-
 """
 
 WIKIPEDIA_SEARCH_INTRO = """
@@ -30,9 +27,10 @@ print('Please '+name+ ' '+surname+', list your 5 main interests and rate each of
 
 for i in range(0, 5):
     topic = input('Topic '+str(i+1)+': ')
+    while topic in user.rates.keys():
+        topic = input('Topic already inserted!!\nTopic '+str(i+1)+': ')
 
     rate = int(input('Rate '+topic+ ' (lower=1, higher=5): '))
-
     while rate < 0 or rate > 5:
         rate = int(input('Not valid rate!!!\nRate '+topic+' (lower=1, higher=5): '))
 
