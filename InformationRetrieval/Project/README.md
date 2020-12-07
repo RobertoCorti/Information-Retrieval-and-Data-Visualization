@@ -50,6 +50,7 @@ Once indicated your topic preferences, the WikipediaSearch engine will compute t
 ## Resources
 
 * [Wikipedia Downloads](https://dumps.wikimedia.org/other/)
+* [Original PageRank paper](http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf)
 * [Topic-specific PageRank - NLP Stanford](https://nlp.stanford.edu/IR-book/html/htmledition/topic-specific-pagerank-1.html)
 * [Topic-Sensitive PageRank paper](http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.85.9098&rep=rep1&type=pdf)
 
