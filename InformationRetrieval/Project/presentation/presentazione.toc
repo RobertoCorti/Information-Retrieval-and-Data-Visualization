@@ -1,0 +1,5 @@
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@sectionintoc {2}{Wikipedia dataset}{9}{0}{2}
+\beamer@sectionintoc {3}{WikipediaSearch implementation}{11}{0}{3}
+\beamer@sectionintoc {4}{WikipediaSearch evaluation}{13}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{15}{0}{5}

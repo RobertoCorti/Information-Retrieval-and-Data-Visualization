@@ -7,6 +7,8 @@ import numpy as np
 from functools import partial
 from operator import is_not
 from urllib.parse import unquote, unquote_plus
+import warnings
+warnings.filterwarnings('ignore')
 
 
 def filtering(arr):
@@ -74,6 +76,19 @@ def preprocessing_step1(dictionary):
             elif '../' in z:
                 sites[x][i] = z.replace('../','')
                 
+def filter_useful_pages(dictionary):
+
+    not_useful_pages= ['Category~', 'GFDL', 'Help~','Image~',
+                        'Special~', 'Talk~', 'Template',
+                        'User~', 'User_', 'Wikimedia', 'Wikipedia~', 
+                        'Wiktionary']
+    
+    dictionary_new = {}
+    for key in dictionary.keys():
+        mask = [x not in key for x in not_useful_pages]
+        if all(mask):
+             dictionary_new[key] = dictionary[key]
+    return dictionary_new
                 
 def preprocessing_step2(dictionary):
     
@@ -96,10 +111,15 @@ def write_graph(dictionary, outputFile):
 
 
 if __name__ == '__main__':
+    
     print('\n Scraping into data/simple ....\n')
     sites, contents = get_dictionaries('data/simple')
 
     preprocessing_step1(sites)
+
+    sites = filter_useful_pages(sites)
+    contents = filter_useful_pages(contents)
+
     preprocessing_step2(sites)
 
     split_contents(contents)
