@@ -1,9 +1,9 @@
 # TeX files
-.synctex.gz
-.toc
-.out
-.aux
-.nav
+*.synctex.gz
+*.toc
+*.out
+*.aux
+*.nav
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
