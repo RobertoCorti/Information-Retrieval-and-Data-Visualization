@@ -5,31 +5,45 @@ from scipy.sparse import csr_matrix
 class PersonalizedPageRank:
     
     def __init__(self, graphFile, contentFile):
+        '''
+        Init method of PersonalizedPageRank class. It calls generate_graph(), generate_contents() and compute_stochastic_matrix()
+        Parameters
+        ----------   
+        graphFile : string
+            The json file path on which the web graph is stored.
+        contentFile : string
+            The json file path on which the web graph is stored.
+        '''
         self.graph_file = graphFile
         self.content_file = contentFile
 
-        self.generate_graph() # generate self.graph, self.num_nodes
-        self.generate_contents() # generate self.contents
-        self.compute_stochastic_matrix() # generate self.R
+        self.generate_graph() 
+        self.generate_contents() 
+        self.generate_stochastic_matrix() 
         
     def generate_graph(self):
+        '''
+        Generates from self.graph_file the web graph and stores it into self.graph and the number of nodes into self.num_nodes.
+        The web graph will contain for each node (page) a list of strings that contains the list of nodes of the graph by wich the node links in its HTML page.
+        '''
         with open(self.graph_file, 'r') as f:
-            # We have the graph encoded as an adjacency list in a JSON file 
             g = json.load(f)
-            # The data structure read from JSON is already "good enough" for us
         self.graph = g
         self.num_nodes = len(g.keys())
         
     def generate_contents(self):
-        with open(self.content_file, 'r') as f:
-            # We have the graph encoded as an adjacency list in a JSON file 
+        '''
+        Generates from self.content_file the content graph and stores it into self.content.
+        The content graph will contain for each node (page) a list of strings that contains the topics specified from the HTML meta information.
+        '''
+        with open(self.content_file, 'r') as f: 
             c = json.load(f)
-            # The data structure read from JSON is already "good enough" for us
         self.contents = c
         
-    def compute_stochastic_matrix(self):
-        # we make a dictionary saving for each key in the graph
-        # the corresponding index in the matrix
+    def generate_stochastic_matrix(self):
+        '''
+        Generates from self.graph the stochastic matrix of the graph using scipy.sparse.csr_matrix.
+        '''
         key_to_pos = dict(zip(self.graph.keys(), range(0,self.num_nodes)))
         row = []
         col = []
@@ -45,6 +59,13 @@ class PersonalizedPageRank:
         self.R = R
     
     def generate_seed(self, topic):
+        '''
+        Generates from a given topic the jump vector, a (self.num_nodes,) array that contains for the i-th component 0 if the node doesn't have topic in its contents, 1/|S| otherwise (S subspace of nodes containing topic).
+        Parameters
+        ----------   
+        topic : string
+            The topic on which we want to generate the jump vector.
+        '''
         key_to_pos = dict(zip(self.graph.keys(), range(0,self.num_nodes)))
         seeds = np.zeros(self.num_nodes)
 
@@ -60,23 +81,38 @@ class PersonalizedPageRank:
             self.J = seeds
         
     def PersonalizedPageRank_iteration(self, x, alpha):
+        '''
+        Single iteration of PersonalizedPageRank. It returns an array of shape (self.num_nodes,) which contains un update of the PageRank vector.
+        Parameters
+        ----------   
+        x     : array of shape (self.num_nodes,)
+            The current PageRank vector.
+        alpha : float
+            Real-value between [0,1] which represents the teleporting probability.
+        '''
         P = (1 - alpha) * self.R
         x_prime = (P.T).dot(x) + alpha * self.J
         return x_prime
     
     def compute_PersonalizedPageRank(self, topic, alpha, epsilon):
-        # The jump vector is imply a vector of ones divided by its length
+        '''
+        Based on one single topic, computes the PageRank of self.graph with teleporting probability alpha and precision epsilon.
+        Parameters
+        ----------   
+        topic : string
+            The topic on which we want to perform the PageRank.
+        alpha : float
+            Real-value between [0,1] which represents the teleporting probability.
+        epsilon: float
+            Precision of the iterative computation of the PageRank vector.
+        '''
         self.generate_seed(topic)
         if (np.sum(self.J)==0):
             print('There are no pages related to '+topic)
             x = np.zeros(self.num_nodes)
             return x
-        # The starting point can be a uniform distribution across all nodes
-        # ...or a random stochastic vector
         x = np.random.rand(self.num_nodes)
         x = x/x.sum()
-        # We can now iterate until the norm one of the changes in the
-        # last iteration goes below epsilon
         err = np.inf # initially infinity
         while (err > epsilon):
             x_new = self.PersonalizedPageRank_iteration(x, alpha)
