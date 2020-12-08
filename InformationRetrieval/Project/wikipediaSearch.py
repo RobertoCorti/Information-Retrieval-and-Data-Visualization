@@ -34,7 +34,7 @@ for i in range(0, 5):
     while rate < 0 or rate > 5:
         rate = int(input('Not valid rate!!!\nRate '+topic+' (lower=1, higher=5): '))
 
-    user.getTopicRate(topic, rate)
+    user.get_topic_rate(topic, rate)
     print(' ')
 
 

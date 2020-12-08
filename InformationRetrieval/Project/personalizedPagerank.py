@@ -7,6 +7,7 @@ class PersonalizedPageRank:
     def __init__(self, graphFile, contentFile):
         '''
         Init method of PersonalizedPageRank class. It calls generate_graph(), generate_contents() and compute_stochastic_matrix()
+        
         Parameters
         ----------   
         graphFile : string
@@ -20,6 +21,7 @@ class PersonalizedPageRank:
         self.generate_graph() 
         self.generate_contents() 
         self.generate_stochastic_matrix() 
+
         
     def generate_graph(self):
         '''
@@ -61,6 +63,7 @@ class PersonalizedPageRank:
     def generate_seed(self, topic):
         '''
         Generates from a given topic the jump vector, a (self.num_nodes,) array that contains for the i-th component 0 if the node doesn't have topic in its contents, 1/|S| otherwise (S subspace of nodes containing topic).
+        
         Parameters
         ----------   
         topic : string
@@ -80,9 +83,10 @@ class PersonalizedPageRank:
         else: 
             self.J = seeds
         
-    def PersonalizedPageRank_iteration(self, x, alpha):
+    def personalizedPageRank_iteration(self, x, alpha):
         '''
         Single iteration of PersonalizedPageRank. It returns an array of shape (self.num_nodes,) which contains un update of the PageRank vector.
+        
         Parameters
         ----------   
         x     : array of shape (self.num_nodes,)
@@ -97,6 +101,7 @@ class PersonalizedPageRank:
     def compute_PersonalizedPageRank(self, topic, alpha, epsilon):
         '''
         Based on one single topic, computes the PageRank of self.graph with teleporting probability alpha and precision epsilon.
+        
         Parameters
         ----------   
         topic : string
@@ -115,7 +120,7 @@ class PersonalizedPageRank:
         x = x/x.sum()
         err = np.inf # initially infinity
         while (err > epsilon):
-            x_new = self.PersonalizedPageRank_iteration(x, alpha)
+            x_new = self.personalizedPageRank_iteration(x, alpha)
             err = (abs(x_new - x)).sum()
             x = x_new
         return x
