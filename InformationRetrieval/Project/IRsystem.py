@@ -56,6 +56,9 @@ class IRsystem():
             self.dict[k] = self.pagerank_vector[i]
 
     def write_result(self):
+        '''
+        Writes self.pagerank_vector into an HTML file with the following path 'result/result_'+self.user.name+self.user.surname+'.html'
+        '''
         paths = []
         for w in sorted(self.dict, key=self.dict.get, reverse=True):
             not_useful_pages= ['User', 'Category', 'Wiki','Help','Image','Special','License', 'GFDL', 'language']
