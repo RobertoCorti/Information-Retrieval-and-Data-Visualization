@@ -12,7 +12,7 @@ class PersonalizedPageRank:
         graphFile : string
             The json file path on which the web graph is stored.
         contentFile : string
-            The json file path on which the web graph is stored.
+            The json file path on which the content web graph is stored.
         '''
         self.graph_file = graphFile
         self.content_file = contentFile
