@@ -61,10 +61,11 @@ class IRsystem():
         '''
         paths = []
         for w in sorted(self.dict, key=self.dict.get, reverse=True):
-            not_useful_pages= ['User', 'Category', 'Wiki','Help','Image','Special','License', 'GFDL', 'language']
-            mask = [x not in w for x in not_useful_pages]
-            if all(mask):
-                paths.append('../data/simple/'+w)
+            #not_useful_pages= ['User', 'Category', 'Wiki','Help','Image','Special','License', 'GFDL', 'language']
+            #mask = [x not in w for x in not_useful_pages]
+            #if all(mask):
+            paths.append('../data/simple/'+w)
+            #print(w, self.dict[w])
 
         with document(title='Result') as doc:
             h1('WikipediaSearch')
