@@ -61,18 +61,23 @@ class IRsystem():
         '''
         paths = []
         for w in sorted(self.dict, key=self.dict.get, reverse=True):
-            #not_useful_pages= ['User', 'Category', 'Wiki','Help','Image','Special','License', 'GFDL', 'language']
-            #mask = [x not in w for x in not_useful_pages]
-            #if all(mask):
             paths.append('../data/simple/'+w)
-            #print(w, self.dict[w])
 
         with document(title='Result') as doc:
             h1('WikipediaSearch')
             h2('Result for '+self.user.name+' '+self.user.surname)
             for path in paths:
+                # remove 'folder1/folder2/folder3/' prefix
                 name = path[21:]
+                # remove '.html' extension
                 name = name.replace('.html','')
+                # remove '_ab2c' string at the end of some files
+                if len(name)>5:
+                    if name[len(name)-5] == '_':
+                        name = name[0:len(name)-5]
+                # substitute '_' with spaces
+                name = name.replace('_',' ')
+                # write link tag
                 ul(li(a(name, href=path), __pretty=True))
 
 
