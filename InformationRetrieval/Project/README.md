@@ -1,6 +1,5 @@
 # Information Retrieval Project:  WikipediaSearch
 
-Presentation: https://robertocorti.github.io/
 
 This repository contains the content of the project for the Information Retrieval course exam.
 
@@ -48,7 +47,7 @@ Once indicated your topic preferences, the WikipediaSearch engine will compute t
 ![result](img/result.png)
 
 ## Resources
-
+* [Presentation for the exam](https://robertocorti.github.io/)
 * [Wikipedia Downloads](https://dumps.wikimedia.org/other/)
 * [Original PageRank paper](http://ilpubs.stanford.edu:8090/422/1/1999-66.pdf)
 * [Topic-specific PageRank - NLP Stanford](https://nlp.stanford.edu/IR-book/html/htmledition/topic-specific-pagerank-1.html)
