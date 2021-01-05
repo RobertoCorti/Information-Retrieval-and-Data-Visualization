@@ -35,6 +35,10 @@ Use the interactive demo as follows:
 
 * specify 5 topics and rank each of them with a score that goes from 1 to 5
 
+* Once indicated your topic preferences, the WikipediaSearch engine will compute the PersonalizedPageRank and it will generate an HTML file with the following path `results/result_[name][surname].html`. 
+
+Here you find an example:
+
 
 
 
@@ -42,9 +46,6 @@ Use the interactive demo as follows:
 
 
 
-Once indicated your topic preferences, the WikipediaSearch engine will compute the PersonalizedPageRank and it will generate an HTML file with the following path `results/result_[name][surname].html`. Here you find an example of such page:
-
-![result](img/result.png)
 
 ## Resources
 * [Presentation for the exam](https://robertocorti.github.io/)
