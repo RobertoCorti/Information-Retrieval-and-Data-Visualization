@@ -1,6 +1,6 @@
 import numpy as np
 from user import User
-from personalizedPagerank import PersonalizedPageRank
+from topicSpecificPagerank import TopicSpecificPageRank
 from dominate import document
 from dominate.tags import ul, li, a, h1, h2
 
@@ -14,8 +14,8 @@ class IRsystem():
         ----------   
         user : class User instance
             User of the current Information Retrieval system.
-        pagerank : class PersonalizedPageRank instance
-            A Personalized PageRank algorithm.
+        pagerank : a TopicSpecificPageRank instance
+            A Topic Specific PageRank algorithm.
         '''
         self.user = user
         self.pagerank = pagerank
@@ -33,7 +33,7 @@ class IRsystem():
         '''
         Compute the final PageRank vector based on the topic specifications of self.user.
         The PageRank vector will be an array of shape (self.pagerank.num_nodes,) and it will be equal to the linear combination: 
-                weight_{topic_1}*PersonalizedPageRank(topic_1)+.....+ weight_{topic_n}*PersonalizedPageRank(topic_n)
+                weight_{topic_1}*TopicSpecificPageRank(topic_1)+.....+ weight_{topic_n}*TopicSpecificPageRank(topic_n)
         
         Parameters
         ----------   
@@ -46,7 +46,7 @@ class IRsystem():
         xs = []
         
         for topic in self.user.rates.keys():
-            x = self.pagerank.compute_PersonalizedPageRank(topic, alpha, epsilon)
+            x = self.pagerank.compute_TopicSpecificPageRank(topic, alpha, epsilon)
             xs.append(x)
         
         xs = np.array(xs)

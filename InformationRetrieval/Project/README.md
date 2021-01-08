@@ -3,7 +3,7 @@
 
 This repository contains the content of the project for the Information Retrieval course exam.
 
-**WikipediaSearch** is a user-interactive tool that computes a Topic-Specific PageRank over a Wikipedia corpus. The user interacts with the system by specifying the 5 topics in which he/she is interested in to look inside Wikipedia. The final result will be an HTML page containing a rank of the Wikipedia articles on which the user may be interested to look.
+**WikipediaSearch** is a user-interactive tool that computes a Personalized PageRank over a Wikipedia corpus. The user interacts with the system by specifying the 5 topics in which he/she is interested in to look inside Wikipedia. The final result will be an HTML page containing a rank of the Wikipedia articles on which the user may be interested to look.
 
 
 
@@ -21,8 +21,8 @@ The python script [`wikipediaGraph.py`](wikipediaGraph.py) will scrape all the p
 ## Structure of the classes
 
 * [`user.py`](user.py) contains the implementation of the `User` class. An instance of this class is characterized by a name, a surname and a dictionary that for each topic is associated a ranking ranging from 1 to 5.
-* [`personalizedPageRank.py`](personalizedPageRank.py) contains the implementation of the `PersonalizedPageRank` class. Inside this class we find all the methods used in order to implement a single topic specific PageRank.
-* [`IRsystem.py`](IRsystem.py) contains the implementation of the `IRSystem` class. This class represent the final model that we would like to compute: given a user and a topic specific PageRank algorithm, the system will take into account all the user preferences specified by its own `rates` and performs a topic specific PageRank for each of these topics and will give as output a linear combination of these results. The weights of each topic PageRank vector is a normalized real value proportional to the rank specified in the user's `rates`.
+* [`topicSpecificPageRank.py`](topicSpecificPageRank.py) contains the implementation of the `TopicSpecificPageRank` class. Inside this class we find all the methods used in order to implement a single Topic-Specific PageRank.
+* [`IRsystem.py`](IRsystem.py) contains the implementation of the `IRSystem` class. This class represent the final model that we would like to compute: given a user and a Topic-Specific PageRank algorithm, the system will take into account all the user preferences specified by its own `rates` and performs a Personalized PageRank considering  linear combination of Topic-Specific PageRanks on the user's topics. The weights of each Topic-Specific PageRank vector is a normalized real value proportional to the rank specified in the user's `rates`.
 
 
 

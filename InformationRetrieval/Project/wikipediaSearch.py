@@ -1,5 +1,5 @@
 from user import User
-from personalizedPagerank import PersonalizedPageRank
+from topicSpecificPagerank import TopicSpecificPageRank
 from IRsystem import IRsystem
 
 WIKIPEDIA_SEARCH_ASCII = """
@@ -38,7 +38,7 @@ for i in range(0, 5):
     print(' ')
 
 
-p = PersonalizedPageRank(graphFile='data/wikipediaGraph_simple.json',
+p = TopicSpecificPageRank(graphFile='data/wikipediaGraph_simple.json',
                          contentFile='data/wikipediaGraph_simple_contents.json')
 
 system = IRsystem(user=user, pagerank=p)

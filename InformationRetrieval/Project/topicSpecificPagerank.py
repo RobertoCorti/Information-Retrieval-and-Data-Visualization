@@ -2,18 +2,18 @@ import json
 import numpy as np
 from scipy.sparse import csr_matrix
 
-class PersonalizedPageRank:
+class TopicSpecificPageRank:
     
     def __init__(self, graphFile, contentFile):
         '''
-        Init method of PersonalizedPageRank class. It calls generate_graph(), generate_contents() and compute_stochastic_matrix()
+        Init method of TopicSpecificPageRank class. It calls generate_graph(), generate_contents() and compute_stochastic_matrix()
         
         Parameters
         ----------   
         graphFile : string
             The json file path on which the web graph is stored.
         contentFile : string
-            The json file path on which the content web graph is stored.
+            The json file path on which the content dictionary is stored.
         '''
         self.graph_file = graphFile
         self.content_file = contentFile
@@ -35,8 +35,8 @@ class PersonalizedPageRank:
         
     def generate_contents(self):
         '''
-        Generates from self.content_file the content graph and stores it into self.content.
-        The content graph will contain for each node (page) a list of strings that contains the topics specified from the HTML meta information.
+        Generates from self.content_file the content dictionary and stores it into self.content.
+        The content dictionary will contain for each key (page) a list of strings that contains the topics specified from the HTML meta information.
         '''
         with open(self.content_file, 'r') as f: 
             c = json.load(f)
@@ -83,9 +83,9 @@ class PersonalizedPageRank:
         else: 
             self.J = seeds
         
-    def personalizedPageRank_iteration(self, x, alpha):
+    def topicSpecificPageRank_iteration(self, x, alpha):
         '''
-        Single iteration of PersonalizedPageRank. It returns an array of shape (self.num_nodes,) which contains un update of the PageRank vector.
+        Single iteration of Topic-Specific PageRank. It returns an array of shape (self.num_nodes,) which contains un update of the PageRank vector.
         
         Parameters
         ----------   
@@ -98,7 +98,7 @@ class PersonalizedPageRank:
         x_prime = (P.T).dot(x) + alpha * self.J
         return x_prime
     
-    def compute_PersonalizedPageRank(self, topic, alpha, epsilon):
+    def compute_TopicSpecificPageRank(self, topic, alpha, epsilon):
         '''
         Based on one single topic, computes the PageRank of self.graph with teleporting probability alpha and precision epsilon.
         
@@ -120,7 +120,7 @@ class PersonalizedPageRank:
         x = x/x.sum()
         err = np.inf # initially infinity
         while (err > epsilon):
-            x_new = self.personalizedPageRank_iteration(x, alpha)
+            x_new = self.topicSpecificPageRank_iteration(x, alpha)
             err = (abs(x_new - x)).sum()
             x = x_new
         return x
