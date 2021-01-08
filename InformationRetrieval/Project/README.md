@@ -21,7 +21,7 @@ The python script [`wikipediaGraph.py`](wikipediaGraph.py) will scrape all the p
 ## Structure of the classes
 
 * [`user.py`](user.py) contains the implementation of the `User` class. An instance of this class is characterized by a name, a surname and a dictionary that for each topic is associated a ranking ranging from 1 to 5.
-* [`topicSpecificPageRank.py`](topicSpecificPageRank.py) contains the implementation of the `TopicSpecificPageRank` class. Inside this class we find all the methods used in order to implement a single Topic-Specific PageRank.
+* [`topicSpecificPagerank.py.py`](topicSpecificPagerank.py) contains the implementation of the `TopicSpecificPageRank` class. Inside this class we find all the methods used in order to implement a single Topic-Specific PageRank.
 * [`IRsystem.py`](IRsystem.py) contains the implementation of the `IRSystem` class. This class represent the final model that we would like to compute: given a user and a Topic-Specific PageRank algorithm, the system will take into account all the user preferences specified by its own `rates` and performs a Personalized PageRank considering  linear combination of Topic-Specific PageRanks on the user's topics. The weights of each Topic-Specific PageRank vector is a normalized real value proportional to the rank specified in the user's `rates`.
 
 
