@@ -60,7 +60,7 @@ class TopicSpecificPageRank:
     
         self.R = R
     
-    def generate_seed(self, topic):
+    def generate_jump_vector(self, topic):
         '''
         Generates from a given topic the jump vector, a (self.num_nodes,) array that contains for the i-th component 0 if the node doesn't have topic in its contents, 1/|S| otherwise (S subspace of nodes containing topic).
         
@@ -111,7 +111,7 @@ class TopicSpecificPageRank:
         epsilon: float
             Precision of the iterative computation of the PageRank vector.
         '''
-        self.generate_seed(topic)
+        self.generate_jump_vector(topic)
         if (np.sum(self.J)==0):
             print('There are no pages related to '+topic)
             x = np.zeros(self.num_nodes)
