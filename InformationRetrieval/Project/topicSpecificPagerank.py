@@ -70,18 +70,18 @@ class TopicSpecificPageRank:
             The topic on which we want to generate the jump vector.
         '''
         key_to_pos = dict(zip(self.graph.keys(), range(0,self.num_nodes)))
-        seeds = np.zeros(self.num_nodes)
+        j_vector = np.zeros(self.num_nodes)
 
         for key in self.contents.keys():
             lower_key_content = [x.lower() for x in self.contents[key]]
             mask = [topic in x for x in lower_key_content]
             if any(mask):
-                seeds[key_to_pos[key]] = 1
+                j_vector[key_to_pos[key]] = 1
 
-        if (np.sum(seeds)!=0):
-            self.J = seeds/sum(seeds)
+        if (np.sum(j_vector)!=0):
+            self.J = j_vector/sum(j_vector)
         else: 
-            self.J = seeds
+            self.J = j_vector
         
     def topicSpecificPageRank_iteration(self, x, alpha):
         '''
